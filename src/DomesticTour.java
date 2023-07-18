@@ -38,7 +38,7 @@ public class DomesticTour extends Tour {
 
     @Override
     public String toString() {
-        String info = "Domestic Tour\n";
+//        String info = "\n";
 
 //                String isHasPrivateTour = "No";
 //                String isHasHoneymoonTour = "No";
@@ -52,7 +52,13 @@ public class DomesticTour extends Tour {
 //                info += "\n" + tours.getStateName() + "\n" + isHasPrivateTour + "\n" + isHasHoneymoonTour + "\n" + tours.getDuration();
 
 
-        return info;
+        return "Tour name: " + super.getName() + "\n" +
+                "State: " + getStateName() + "\n" +
+                "Has Private Tour: " + (super.isHasPrivateTour() ? "Yes" : "No") + "\n" +
+                "Has Honeymoon Tour: " + (isHasHoneymoonTour() ? "Yes" : "No") + "\n" +
+                "Duration: " + super.getDuration() +" days"+ "\n" +
+                "Normal Price: " + priceMap.get("NormalPrice") + "\n" +
+                "Peak Price: " + priceMap.get("PeakPrice")+ "\n" ;
     }
 
     public HashMap<String, Price> setPriceMap() {

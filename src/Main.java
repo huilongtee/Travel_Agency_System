@@ -12,7 +12,10 @@ public class Main {
         while (true) {
             //while true the program continue
             //ask user whether he/she want to continue
-            System.out.print("(1)Create a new country /  (2)Create a new state / (3)Create a new tour / (4)View Tours / (5)Exit the program\n");
+            System.out.println("###################################################################################################################");
+            System.out.println("(1)Create a new country /  (2)Create a new state / (3)Create a new tour / (4)View Tours / (5)Exit the program");
+            System.out.println("###################################################################################################################");
+
             System.out.print("Please make a choice: ");
             int choice;
             int tourSelection;
@@ -79,9 +82,13 @@ public class Main {
                     askAddTourQuestion(keyboard, tourAgency);
                     break;
 
-                }case 4:{
+                }
+                case 4: {
                     askShowWhichTourQuestion(keyboard, tourAgency);
                     break;
+                }
+                case 5:{
+                    System.exit(0);
                 }
             }
 
@@ -293,7 +300,11 @@ public class Main {
 
 
     public static void askAddStateQuestion(Scanner keyboard, TourAgency tourAgency) {
+        System.out.println("###################################################################################################################");
+
         tourAgency.printCountryList();
+        System.out.println("###################################################################################################################");
+
         try {
             System.out.print("Please select a country that you want to add the new state: ");
             keyboard.nextLine();
@@ -340,12 +351,17 @@ public class Main {
             System.out.print("Please make a choice: ");
             int choice = keyboard.nextInt();
             if (choice == 1) {
+                System.out.println("###################################################################################################################");
+
                 //Domestic Tour
                 tourAgency.printStateList();//print all states in Malaysia
+                System.out.println("###################################################################################################################");
+
                 System.out.print("Please select a state that you want to add the new tour: ");
                 keyboard.nextLine();
                 int index = keyboard.nextInt();
                 String stateName = tourAgency.getLocalStateName(index - 1);
+                keyboard.nextLine();
 
 
                 while (true) {
@@ -406,89 +422,99 @@ public class Main {
                 tourAgency.addTour(tour);
 
             } else if (choice == 2) {
+                System.out.println("###################################################################################################################");
+
                 tourAgency.printCountryList();
+                System.out.println("###################################################################################################################");
 
 
-                    System.out.print("Please select a country that you want to add for the new trip: ");
+                System.out.print("Please select a country that you want to add for the new trip: ");
+                keyboard.nextLine();
+                int index = keyboard.nextInt();
+                String countryName = tourAgency.getCountryName(index - 1);
+
+                if (!countryName.isEmpty()) {
+                    tourAgency.printStateList(index - 1);
+                    System.out.print("Please select a state that you want to add for the new trip: ");
                     keyboard.nextLine();
-                    int index = keyboard.nextInt();
-                    String countryName = tourAgency.getCountryName(index - 1);
+                    int stateIndex = keyboard.nextInt();
+                    String stateName = tourAgency.getOverseaStateName(index - 1, stateIndex - 1);
+                    keyboard.nextLine();
 
-                    if (!countryName.isEmpty()) {
-                        tourAgency.printStateList(index - 1);
-                        System.out.print("Please select a state that you want to add for the new trip: ");
-                        keyboard.nextLine();
-                        int stateIndex = keyboard.nextInt();
-                        String stateName = tourAgency.getOverseaStateName(index - 1, stateIndex - 1);
-                        keyboard.nextLine();
+                    while (true) {
+                        try {
+                            System.out.print("What is the tour name: ");
+                            tourName = keyboard.nextLine();
 
-                        while (true) {
-                            try {
-                                System.out.print("What is the tour name: ");
-                                tourName = keyboard.nextLine();
-
-                                break;
-                            } catch (Exception e) {
-                                System.out.println(e);
-                                keyboard.next();
-                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            keyboard.next();
                         }
-
-                        while (true) {
-                            try {
-                                System.out.print("Is the tour has private tour?(yes/no): ");
-                                String answer = keyboard.nextLine();
-                                if (answer.toLowerCase().matches("yes")) {
-                                    hasPrivateTour = true;
-                                }
-                                break;
-                            } catch (Exception e) {
-                                System.out.println(e);
-                                keyboard.next();
-                            }
-                        }
-
-                        while (true) {
-                            try {
-                                System.out.print("Is the tour has joined tour?(yes/no): ");
-                                String answer = keyboard.nextLine();
-                                if (answer.toLowerCase().matches("yes")) {
-                                    hasJoinedTour = true;
-                                }
-                                break;
-                            } catch (Exception e) {
-                                System.out.println(e);
-                                keyboard.next();
-                            }
-                        }
-
-                        while (true) {
-                            try {
-                                System.out.print("How many days is the tour?: ");
-                                duration = keyboard.nextInt();
-                                break;
-                            } catch (Exception e) {
-                                System.out.println(e);
-                                keyboard.next();
-                            }
-                        }
-
-                        OverseaTour tour = new OverseaTour(tourName, hasPrivateTour, duration, countryName, hasJoinedTour, stateName);
-                        tourAgency.addTour(tour);
-
                     }
 
+                    while (true) {
+                        try {
+                            System.out.print("Is the tour has private tour? (yes/no): ");
+                            String answer = keyboard.nextLine();
+                            if (answer.toLowerCase().matches("yes")) {
+                                hasPrivateTour = true;
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            keyboard.next();
+                        }
+                    }
 
-            }
+                    while (true) {
+                        try {
+                            System.out.print("Is the tour has joined tour? (yes/no): ");
+                            String answer = keyboard.nextLine();
+                            if (answer.toLowerCase().matches("yes")) {
+                                hasJoinedTour = true;
+                            }
+                            break;
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            keyboard.next();
+                        }
+                    }
+
+                    while (true) {
+                        try {
+                            System.out.print("How many days is the tour?: ");
+                            duration = keyboard.nextInt();
+                            break;
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            keyboard.next();
+                        }
+                    }
+
+                    OverseaTour tour = new OverseaTour(tourName, hasPrivateTour, duration, countryName, hasJoinedTour, stateName);
+                    tourAgency.addTour(tour);
+
+                }
+
+
+            }else{System.out.println("Please enter a valid number");}
         } catch (Exception e) {
             System.out.println(e);
             keyboard.next();
         }
     }
 
-    public static void askShowWhichTourQuestion(Scanner keyboard, TourAgency tourAgency){
+    public static void askShowWhichTourQuestion(Scanner keyboard, TourAgency tourAgency) {
         keyboard.nextLine();
-        tourAgency.printTourList();
+        System.out.println("###################################################################################################################");
 
+        tourAgency.printTourList();
+        System.out.println("###################################################################################################################");
+
+        System.out.print("Please select a trip: ");
+
+        int index = keyboard.nextInt();
+        tourAgency.printTour(index - 1);
     }
 }

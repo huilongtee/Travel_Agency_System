@@ -48,6 +48,10 @@ public class TourAgency {
         return tourList;
     }
 
+    public void printTour(int index){
+        System.out.print(tourList.get(index).toString());
+    }
+
     //print state list in Malaysia
     public void printStateList() {
         int count = 0;
@@ -90,17 +94,14 @@ public class TourAgency {
         return stateName;
     }
 
-    public String getOverseaStateName(int countryIndex,int stateIndex) {
+    public String getOverseaStateName(int countryIndex, int stateIndex) {
 
         String stateName = "";
 
 
-
-
-               Country country= countryList.get(countryIndex);
-State state=country.getStateList().get(stateIndex);
-                stateName = state.getStateName();
-
+        Country country = countryList.get(countryIndex);
+        State state = country.getStateList().get(stateIndex);
+        stateName = state.getStateName();
 
 
         return stateName;
