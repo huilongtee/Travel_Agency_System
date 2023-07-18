@@ -73,4 +73,9 @@ public class DomesticTour extends Tour {
 
         return priceMap;
     }
+
+    public HashMap<String, Price> getPriceMap() {
+        return priceMap;
+    }
+
 }

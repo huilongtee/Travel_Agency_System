@@ -59,6 +59,11 @@ public class OverseaTour extends Tour {
         return priceMap;
     }
 
+    public HashMap<String, Price> getPriceMap() {
+        return priceMap;
+    }
+
+
     @Override
     public String toString() {
 

@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public abstract class Price {
 
     private double adultPrice;
@@ -52,6 +54,8 @@ public abstract class Price {
     public double getInfantPrice() {
         return infantPrice;
     }
+
+
 
 
     public String toString() {

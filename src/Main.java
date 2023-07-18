@@ -12,9 +12,9 @@ public class Main {
         while (true) {
             //while true the program continue
             //ask user whether he/she want to continue
-            System.out.println("###################################################################################################################");
-            System.out.println("(1)Create a new country /  (2)Create a new state / (3)Create a new tour / (4)View Tours / (5)Exit the program");
-            System.out.println("###################################################################################################################");
+            System.out.println("#################################################################################################################################");
+            System.out.println("(1)Create a new country /  (2)Create a new state / (3)Create a new tour / (4)View Tours / (5)Update Price / (6)Exit the program");
+            System.out.println("#################################################################################################################################");
 
             System.out.print("Please make a choice: ");
             int choice;
@@ -87,7 +87,11 @@ public class Main {
                     askShowWhichTourQuestion(keyboard, tourAgency);
                     break;
                 }
-                case 5:{
+                case 5: {
+                    askUpdatePriceQuestion(keyboard, tourAgency);
+                    break;
+                }
+                case 6: {
                     System.exit(0);
                 }
             }
@@ -498,7 +502,9 @@ public class Main {
                 }
 
 
-            }else{System.out.println("Please enter a valid number");}
+            } else {
+                System.out.println("Please enter a valid number");
+            }
         } catch (Exception e) {
             System.out.println(e);
             keyboard.next();
@@ -516,5 +522,73 @@ public class Main {
 
         int index = keyboard.nextInt();
         tourAgency.printTour(index - 1);
+    }
+
+    public static void askUpdatePriceQuestion(Scanner keyboard, TourAgency tourAgency) {
+        try {
+            keyboard.nextLine();
+            System.out.println("###################################################################################################################");
+
+            tourAgency.printTourList();
+            System.out.println("###################################################################################################################");
+
+            System.out.print("Please select a trip to update its price: ");
+            int index = keyboard.nextInt();
+
+            String priceType = "";
+//            HashMap<String, Double> priceMap = null;
+
+            keyboard.nextLine();
+            System.out.println("(1) Normal Price / (2) Peak Price");
+            System.out.print("Please make a choice: ");
+            int priceChoice = keyboard.nextInt();
+            if (priceChoice == 1) {
+                priceType = "NormalPrice";
+                keyboard.nextLine();
+                HashMap<String, Double> priceMap = getUpdatedPrice(keyboard);
+                tourAgency.updatePrice(index-1, priceType, priceMap);
+
+            } else if (priceChoice == 2) {
+                priceType = "PeakPrice";
+                keyboard.nextLine();
+                HashMap<String, Double> priceMap = getUpdatedPrice(keyboard);
+                tourAgency.updatePrice(index-1, priceType, priceMap);
+
+            } else {
+                System.out.println("Please enter a valid number");
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+            keyboard.next();
+        }
+
+    }
+
+    public static HashMap<String, Double> getUpdatedPrice(Scanner keyboard) {
+        HashMap<String, Double> priceMap = new HashMap<>();
+        double adultPrice = 0;
+        double childWithExtraBedPrice = 0;
+        double childWithNoExtraBedPrice = 0;
+        double infantPrice = 0;
+
+        System.out.print("Please enter the new adult price: ");
+        adultPrice = keyboard.nextDouble();
+
+        System.out.print("Please enter the new child with extra bed price: ");
+        childWithExtraBedPrice = keyboard.nextDouble();
+
+        System.out.print("Please enter the new child with no extra bed price: ");
+        childWithNoExtraBedPrice = keyboard.nextDouble();
+
+        System.out.print("Please enter the new infant price: ");
+        infantPrice = keyboard.nextDouble();
+
+        priceMap.put("adultPrice", adultPrice);
+        priceMap.put("childWithExtraBedPrice", childWithExtraBedPrice);
+        priceMap.put("childWithNoExtraBedPrice", childWithNoExtraBedPrice);
+        priceMap.put("infantPrice", infantPrice);
+        return priceMap;
     }
 }

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Tour {
+public abstract class Tour {
     private String name;
     private boolean hasPrivateTour;
     private int duration;
@@ -42,4 +43,7 @@ public class Tour {
     public boolean isHasPrivateTour() {
         return hasPrivateTour;
     }
+
+    public abstract HashMap<String, Price> getPriceMap();
+
 }

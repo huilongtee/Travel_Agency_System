@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TourAgency {
 
@@ -48,7 +49,7 @@ public class TourAgency {
         return tourList;
     }
 
-    public void printTour(int index){
+    public void printTour(int index) {
         System.out.print(tourList.get(index).toString());
     }
 
@@ -135,5 +136,19 @@ public class TourAgency {
                 country.getStateList().add(new State(stateName));
             }
         });
+    }
+
+    public void updatePrice(int index, String priceType, HashMap<String, Double> priceMap) {
+        double adultPrice = priceMap.get("adultPrice");
+        double childWithExtraBedPrice = priceMap.get("childWithExtraBedPrice");
+        double childWithNoExtraBedPrice = priceMap.get("childWithNoExtraBedPrice");
+        double infantPrice = priceMap.get("infantPrice");
+
+        tourList.get(index).getPriceMap().get(priceType).setAdultPrice(adultPrice);
+        tourList.get(index).getPriceMap().get(priceType).setChildWithExtraBedPrice(childWithExtraBedPrice);
+        tourList.get(index).getPriceMap().get(priceType).setChildWithNoExtraBedPrice(childWithNoExtraBedPrice);
+        tourList.get(index).getPriceMap().get(priceType).setInfantPrice(infantPrice);
+
+
     }
 }
