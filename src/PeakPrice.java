@@ -24,4 +24,9 @@ public class PeakPrice extends Price {
         super.setChildWithExtraBedPrice(4097);
         super.setInfantPrice(500);
     }
+
+    @Override
+    public String toString(){
+        return super.toString();
+    }
 }

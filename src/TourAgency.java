@@ -44,29 +44,95 @@ public class TourAgency {
         for (Tour tour : tourList) {
             count++;
             System.out.println(count + ": " + tour.getName() + "(" + (tour.getClass().getName().equalsIgnoreCase("DomesticTour") ? "Domestic Tour" : "Oversea Tour") + ")");
-
         }
         return tourList;
     }
 
     //print state list in Malaysia
     public void printStateList() {
+        int count = 0;
 
-        countryList.forEach(country -> {
-            if (country.getCountryName().equalsIgnoreCase("Malaysia")) {
-                country.getStateList().forEach(state -> {
-                    System.out.println(state.getStateName());
-                });
+        for (Country country : countryList) {
+            count++;
+            if (country.getCountryName().equals("Malaysia")) {
+                for (State state : country.getStateList()) {
+                    System.out.println(count + ": " + state.getStateName());
+
+                }
+
             }
-        });
+
+        }
+
+
+//        countryList.forEach(country -> {
+//            if (country.getCountryName().equalsIgnoreCase("Malaysia")) {
+//                country.getStateList().forEach(state -> {
+//                    System.out.println("1 - " + state.getStateName());
+//                });
+//            }
+//        });
+    }
+
+    public String getLocalStateName(int index) {
+
+        String stateName = "";
+
+        for (Country country : countryList) {
+
+            if (country.getCountryName().equals("Malaysia")) {
+                State state = country.getStateList().get(index);
+
+                stateName = state.getStateName();
+
+            }
+        }
+        return stateName;
+    }
+
+    public String getOverseaStateName(int countryIndex,int stateIndex) {
+
+        String stateName = "";
+
+
+
+
+               Country country= countryList.get(countryIndex);
+State state=country.getStateList().get(stateIndex);
+                stateName = state.getStateName();
+
+
+
+        return stateName;
     }
 
     //print state list except Malaysia
     public void printStateList(int index) {
+        int count = 0;
 
         Country country = countryList.get(index);
-        country.getStateList().forEach(state -> {
-            System.out.println(state.getStateName());
+        for (State state : country.getStateList()) {
+            count++;
+            System.out.println(count + ": " + state.getStateName());
+
+        }
+//        country.getStateList().forEach(state -> {
+//            System.out.println(state.getStateName());
+//        });
+    }
+
+    public String getCountryName(int index) {
+        String countryName = "";
+        Country country = countryList.get(index);
+        countryName = country.getCountryName();
+        return countryName;
+    }
+
+    public void addState(String countryName, String stateName) {
+        countryList.forEach(country -> {
+            if (country.getCountryName().equalsIgnoreCase(countryName)) {
+                country.getStateList().add(new State(stateName));
+            }
         });
     }
 }

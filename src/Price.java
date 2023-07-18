@@ -5,18 +5,19 @@ public abstract class Price {
     private double childWithExtraBedPrice;
     private double infantPrice;
 
-    protected Price(){
-        this(0,0,0,0);
+    protected Price() {
+        this(0, 0, 0, 0);
     }
 
-    protected Price(double adultPrice,double childWithNoExtraBedPrice,double childWithExtraBedPrice,double infantPrice){
-        this.adultPrice=adultPrice;
-        this.childWithNoExtraBedPrice=childWithNoExtraBedPrice;
-        this.childWithExtraBedPrice=childWithExtraBedPrice;
-        this.infantPrice=infantPrice;
+    protected Price(double adultPrice, double childWithNoExtraBedPrice, double childWithExtraBedPrice, double infantPrice) {
+        this.adultPrice = adultPrice;
+        this.childWithNoExtraBedPrice = childWithNoExtraBedPrice;
+        this.childWithExtraBedPrice = childWithExtraBedPrice;
+        this.infantPrice = infantPrice;
     }
 
     public abstract void setDomesticTourPrice();
+
     public abstract void setOverseaTourPrice();
 
 
@@ -53,4 +54,10 @@ public abstract class Price {
     }
 
 
+    public String toString() {
+        return "Adult: " + adultPrice +
+                "\nChild With Extra Bed: " + childWithExtraBedPrice +
+                "\nChild With No Extra Bed: " + childWithNoExtraBedPrice +
+                "\nInfant: " + infantPrice;
+    }
 }

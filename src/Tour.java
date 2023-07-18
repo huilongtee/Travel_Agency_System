@@ -12,8 +12,8 @@ public class Tour {
         this.duration = 6;
     }
 
-    protected Tour(String nameame, boolean hasPrivateTour, int duration) {
-        this.name = name;
+    protected Tour(String tourName, boolean hasPrivateTour, int duration) {
+        this.name = tourName;
         this.hasPrivateTour = hasPrivateTour;
         this.duration = duration;
     }
@@ -25,6 +25,7 @@ public class Tour {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -36,6 +37,7 @@ public class Tour {
     public String getName() {
         return name;
     }
+
 
     public boolean isHasPrivateTour() {
         return hasPrivateTour;
