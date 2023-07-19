@@ -26,10 +26,14 @@ public class DomesticTour extends Tour {
         return hasHoneymoonTour;
     }
 
-    public DomesticTour getDomesticTours() {
-        return this;
-    }
+//    public DomesticTour getDomesticTours() {
+//        return this;
+//    }
 
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
 
     public String getStateName() {
         return stateName;

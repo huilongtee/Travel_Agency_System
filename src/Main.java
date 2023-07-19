@@ -94,6 +94,8 @@ public class Main {
                 case 6: {
                     System.exit(0);
                 }
+                default:
+                    System.out.print("Please enter a valid number");
             }
 
         }
@@ -546,13 +548,13 @@ public class Main {
                 priceType = "NormalPrice";
                 keyboard.nextLine();
                 HashMap<String, Double> priceMap = getUpdatedPrice(keyboard);
-                tourAgency.updatePrice(index-1, priceType, priceMap);
+                tourAgency.updatePrice(index - 1, priceType, priceMap);
 
             } else if (priceChoice == 2) {
                 priceType = "PeakPrice";
                 keyboard.nextLine();
                 HashMap<String, Double> priceMap = getUpdatedPrice(keyboard);
-                tourAgency.updatePrice(index-1, priceType, priceMap);
+                tourAgency.updatePrice(index - 1, priceType, priceMap);
 
             } else {
                 System.out.println("Please enter a valid number");

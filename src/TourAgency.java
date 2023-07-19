@@ -58,9 +58,10 @@ public class TourAgency {
         int count = 0;
 
         for (Country country : countryList) {
-            count++;
+
             if (country.getCountryName().equals("Malaysia")) {
                 for (State state : country.getStateList()) {
+                    count++;
                     System.out.println(count + ": " + state.getStateName());
 
                 }
